@@ -36,3 +36,4 @@ std::vector<double> DepCalculations(bool check, double deposit_term,
 }  // namespace s21
 
 #endif  // SRC_CONTROLLER_CONTROLLER_H
+
