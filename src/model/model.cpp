@@ -143,6 +143,56 @@ std::string Model::Parser() {
   return newStr;
 }
 
+double Model::Arithmetic(bool get) {
+  // начало определения функции `Arithmetic` с параметром `get`, который определяет, нужно ли получить следующий символ из входной строки
+  if (get) {
+    GetSymbol();
+  }
+  // если параметр `get` равен `true`, вызываем метод `GetSymbol` для получения следующего символа из входной строки
+  double result = 0.0;
+  // инициализируем переменную `result` значениями 0.0
+  if (current == NUMBER) { //проверяем, равен ли текущий символ числу
+    result = m_number_value;
+    // если текущий символ является числом, присваиваем переменной `result` значение атрибута `m_number_value`
+    GetSymbol();
+    // получаем следующий символ из входной строки
+  } else if (current == MINUS) { // проверяем, является ли текущий символ знаком минус
+    result = -Arithmetic(true);
+    // сли текущий символ является знаком минус, вызываем рекурсивно функцию `Arithmetic` с 
+    // параметром `true` для получения следующего числа и меняем знак на противоположный.
+  } else if (current == PLUS) {
+    result = Arithmetic(true);
+  } else if (current == SIN) {
+    result = sin(Arithmetic(true));
+  } else if (current == COS) {
+    result = cos(Arithmetic(true));
+  } else if (current == TAN) {
+    result = tan(Arithmetic(true));
+  } else if (current == ATAN) {
+    result = atan(Arithmetic(true));
+  } else if (current == ASIN) {
+    result = asin(Arithmetic(true));
+  } else if (current == ACOS) {
+    result = acos(Arithmetic(true));
+  } else if (current == SQRT) {
+    result = sqrt(Arithmetic(true));
+  } else if (current == LOG) {
+    result = log10(Arithmetic(true));
+  } else if (current == LN) {
+    result = log(Arithmetic(true));
+  } else if (current == ROUNDBRACKET_L) {
+    double expr = Expression(true);
+    // если текущий символ является левой круглой скобкой, 
+    // вызываем рекурсивно метод `Expression` с параметром `true`, чтобы вычислить выражение в скобках
+    GetSymbol(); // получаем следующий символ из входной строки
+    result = expr; // результатом является результат выражения в скобках
+  } else {
+    throw std::logic_error("AHTUNG: undefined");
+    // если текущий символ не является числом, знаком минус или левой круглой скобкой, выбрасываем исключение
+  }
+  return result;
+}
+
 }  // namespace s21
 
 
