@@ -33,6 +33,7 @@ void Model::GetSymbol() {
              ch == ROUNDBRACKET_R) { 
     current = type_t(ch);
   } else if (isdigit(ch) || ch == '.') {
+    pStream->putback(ch);
     *pStream >> mNumberValue;
     current = NUMBER;
   } else {
@@ -341,3 +342,5 @@ std::vector<double> Model::DepositCalc( bool check, double deposit_term,
 }
 
 }  // namespace s21
+
+
