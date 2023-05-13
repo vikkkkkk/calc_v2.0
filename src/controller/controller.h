@@ -10,20 +10,20 @@ namespace s21 {
 class Controller {
 // объявление класса Controller
 private:
-std::string m_inputString;
+std::string mInputString;
 // приватная переменная типа std::string для хранения входной строки
 public:
-Controller(std::string const &str = "") : m_inputString(str) {}
+Controller(std::string const &str = "") : mInputString(str) {}
 // конструктор класса с одним параметром - входной строкой. По умолчанию - пустая строка.
 
-std::pair<std::string, double> calculations();
+std::pair<std::string, double> calculation();
 // метод для выполнения математических операций над входной строкой. Возвращает пару значений - строку с выражением и результат операций.
 
-std::vector<double> CrCalculations(double loanAmount, int term, 
+std::vector<double> CrCalc(double loanAmount, int term, 
                                    double interestRate,  bool paymentType);
 // метод для расчёта кредита. Принимает на вход сумму кредита, срок кредита, процентную ставку и тип выплат. Возвращает вектор с результатами расчёта.
 
-std::vector<double> DepCalculations(bool check, double deposit_term, 
+std::vector<double> DepCalc(bool check, double deposit_term, 
                                     double deposit_amount, double interest_rate, 
                                     double tax_rate, double replenishments_month, 
                                     double replenishments_sum, 
