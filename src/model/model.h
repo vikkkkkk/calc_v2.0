@@ -63,17 +63,17 @@ ROUNDBRACKET_R - закрывающаяся скобка
 */
 
  public:
-  Model() : p_stream(nullptr), p_stream_string("") {}
-  explicit Model(std::string initString);
+  Model() : pStream(nullptr), pStreamLine("") {}
+  explicit Model(std::string initLine);
   ~Model();
-  double Calculate();
+  double Calc();
 // Объявление конструкторов, деструктора и метода для выполнения расчёта выражения
 
  private:
-  std::istream* p_stream;
-  std::string p_stream_string;
+  std::istream* pStream;
+  std::string pStreamLine;
   type_t current;
-  double m_number_value;
+  double mNumberValue;
   void GetSymbol();
   double Arithmetic(bool get);
   double Operation(bool get);
@@ -81,15 +81,15 @@ ROUNDBRACKET_R - закрывающаяся скобка
   double Expression(bool get);
   std::string Parser();
   void Check(std::string str);
-  void ReplaceSubstrings(std::string& str);
+  void ReplaceSubscriptLines(std::string& str);
 // Определение приватных переменных и методов.
 
 /*
 
-p_stream - указатель на поток ввода
-p_stream_string - строка со входным выражением
+pStream - указатель на поток ввода
+pStreamLine - строка со входным выражением
 current - текущий символ выражения
-m_number_value - текущее числовое значение
+mNumberValue - текущее числовое значение
 
 GetSymbol() - получение следующего символа выражения
 Arithmetic() - выполнение операций сложения и вычитания
@@ -98,7 +98,7 @@ Pow() - выполнение операций возведения в степе
 Expression() - вычисление выражения
 Parser() - парсинг выражения
 Check() - проверка корректности входного выражения
-ReplaceSubstrings() - замена подстрок во входной строке
+ReplaceSubscriptLines() - замена подстрок во входной строке
 
 */
 
