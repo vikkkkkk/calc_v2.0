@@ -26,7 +26,7 @@ uninstall:
 	rm -rf build*
 
 dvi:
-	open info.html
+	open readme.md 
 
 dist: install
 	rm -rf Archive_calc_v2.0/
