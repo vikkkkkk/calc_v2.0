@@ -263,7 +263,7 @@ std::vector<double> Model::CreditCalc(double sum_credit,
                 (pow(1 + per_m, time_credit) - 1) * sum_credit;
     over_pay = month_pay * time_credit - sum_credit;
     all_pay = over_pay + sum_credit;
-    rez = {all_pay, over_pay, month_pay};
+    rez = {0, month_pay, all_pay, over_pay};
   } else {
     double overpayment = 0, first_month_payment = 0, last_month_payment = 0,
            total_payment = 0;

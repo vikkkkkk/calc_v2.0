@@ -160,6 +160,9 @@ background-color: rgb(81, 96, 76);</string>
    <property name="text">
     <string>Annuity</string>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="label_9">
    <property name="geometry">
