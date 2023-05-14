@@ -153,7 +153,7 @@ void MainWindow::on_pushButton_equals_clicked()
 //    }
     s21::Controller cont(send.toStdString());
 //    QString toStr = QString::number(s21_parser(buf, x), 'g', 15);
-    std::pair res = cont.calculations();
+    std::pair res = cont.calculation();
     ui->result->setText(QString::number(res.second));
     is_x = 1;
 }
@@ -248,7 +248,7 @@ void MainWindow::on_pushButton_graph_clicked()
                 buf.replace(QString("x"), QString::number(i, 'f', 3));
             std::string strBuf = str_expr.toLocal8Bit().data();
             s21::Controller ctrl(strBuf);
-            std::pair<std::string, double> result = ctrl.calculations();
+            std::pair<std::string, double> result = ctrl.calculation();
             y.push_back(result.second);
             i += 0.10;
           }
