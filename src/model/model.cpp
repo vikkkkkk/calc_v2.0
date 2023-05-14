@@ -4,8 +4,8 @@ namespace s21 {
 
 Model::Model(std::string initLine) {
   if (initLine.length() > 255) {
-    throw std::overflow_error(
-        "AHTUNG: An Expressionession of more than 255 characters has been entered");
+    throw std::overflow_error("AHTUNG: An Expressionession of more than 255 "
+                              "characters has been entered");
   } else {
     pStreamLine = initLine;
     pStream = nullptr;
@@ -30,7 +30,7 @@ void Model::GetSymbol() {
              ch == MOD || ch == POW || ch == SIN || ch == COS || ch == TAN ||
              ch == ATAN || ch == ASIN || ch == ATAN || ch == ACOS ||
              ch == SQRT || ch == LOG || ch == LN || ch == ROUNDBRACKET_L ||
-             ch == ROUNDBRACKET_R) { 
+             ch == ROUNDBRACKET_R) {
     current = type_t(ch);
   } else if (isdigit(ch) || ch == '.') {
     pStream->putback(ch);
@@ -47,69 +47,69 @@ std::string Model::Parser() {
   for (size_t i = 0; i < pStreamLine.size(); i++) {
     char c = pStreamLine[i];
     switch (c) {
-      case 'm':
-        if (pStreamLine.substr(i, 3) == "mod") {
-          newStr += "mod";
-          i += 2;
-        } else {
-          check = true;
-        }
-        break;
-      case 's':
-        if (pStreamLine.substr(i, 3) == "sin") {
-          newStr += "sin";
-          i += 2;
-        } else if (pStreamLine.substr(i, 4) == "sqrt") {
-          newStr += "sqrt";
-          i += 3;
-        } else {
-          check = true;
-        }
-        break;
-      case 'c':
-        if (pStreamLine.substr(i, 3) == "cos") {
-          newStr += "cos";
-          i += 2;
-        } else {
-          check = true;
-        }
-        break;
-      case 't':
-        if (pStreamLine.substr(i, 3) == "tan") {
-          newStr += "tan";
-          i += 2;
-        } else {
-          check = true;
-        }
-        break;
-      case 'a':
-        if (pStreamLine.substr(i, 4) == "atan") {
-          newStr += "atan";
-          i += 3;
-        } else if (pStreamLine.substr(i, 4) == "asin") {
-          newStr += "asin";
-          i += 3;
-        } else if (pStreamLine.substr(i, 4) == "acos") {
-          newStr += "acos";
-          i += 3;
-        } else {
-          check = true;
-        }
-        break;
-      case 'l':
-        if (pStreamLine.substr(i, 2) == "ln") {
-          newStr += "ln";
-          i += 1;
-        } else if (pStreamLine.substr(i, 3) == "log") {
-          newStr += "log";
-          i += 2;
-        } else {
-          check = true;
-        }
-        break;
-      default:
-        newStr += c;
-        break;
+    case 'm':
+      if (pStreamLine.substr(i, 3) == "mod") {
+        newStr += "mod";
+        i += 2;
+      } else {
+        check = true;
+      }
+      break;
+    case 's':
+      if (pStreamLine.substr(i, 3) == "sin") {
+        newStr += "sin";
+        i += 2;
+      } else if (pStreamLine.substr(i, 4) == "sqrt") {
+        newStr += "sqrt";
+        i += 3;
+      } else {
+        check = true;
+      }
+      break;
+    case 'c':
+      if (pStreamLine.substr(i, 3) == "cos") {
+        newStr += "cos";
+        i += 2;
+      } else {
+        check = true;
+      }
+      break;
+    case 't':
+      if (pStreamLine.substr(i, 3) == "tan") {
+        newStr += "tan";
+        i += 2;
+      } else {
+        check = true;
+      }
+      break;
+    case 'a':
+      if (pStreamLine.substr(i, 4) == "atan") {
+        newStr += "atan";
+        i += 3;
+      } else if (pStreamLine.substr(i, 4) == "asin") {
+        newStr += "asin";
+        i += 3;
+      } else if (pStreamLine.substr(i, 4) == "acos") {
+        newStr += "acos";
+        i += 3;
+      } else {
+        check = true;
+      }
+      break;
+    case 'l':
+      if (pStreamLine.substr(i, 2) == "ln") {
+        newStr += "ln";
+        i += 1;
+      } else if (pStreamLine.substr(i, 3) == "log") {
+        newStr += "log";
+        i += 2;
+      } else {
+        check = true;
+      }
+      break;
+    default:
+      newStr += c;
+      break;
     }
   }
   if (check) {
@@ -175,23 +175,23 @@ double Model::Operation(bool get) {
 
   while (true) {
     switch (current) {
-      case MULT:
-        left *= Pow(true);
+    case MULT:
+      left *= Pow(true);
+      break;
+    case DIV:
+      if (double divisor = Pow(true)) {
+        left /= divisor;
         break;
-      case DIV:
-        if (double divisor = Pow(true)) {
-          left /= divisor;
-          break;
-        }
-        throw std::logic_error("AHTUNG: divide by 0");
-      case MOD:
-        if (double divisor = Pow(true)) {
-          left = std::fmod(left, divisor);
-          break;
-        }
-        throw std::logic_error("AHTUNG: mode by 0");
-      default:
-        return left;
+      }
+      throw std::logic_error("AHTUNG: divide by 0");
+    case MOD:
+      if (double divisor = Pow(true)) {
+        left = std::fmod(left, divisor);
+        break;
+      }
+      throw std::logic_error("AHTUNG: mode by 0");
+    default:
+      return left;
     }
   }
 }
@@ -201,24 +201,24 @@ double Model::Expression(bool get) {
 
   for (;;) {
     switch (current) {
-      case PLUS:
-        left += Operation(true);
-        break;
-      case MINUS:
-        left -= Operation(true);
-        break;
-      default:
-        return left;
+    case PLUS:
+      left += Operation(true);
+      break;
+    case MINUS:
+      left -= Operation(true);
+      break;
+    default:
+      return left;
     }
   }
 }
 
-void Model::ReplaceSubscriptLines(std::string& str) {
+void Model::ReplaceSubscriptLines(std::string &str) {
   std::unordered_map<std::string, std::string> replacements = {
       {"mod", "m"},  {"log", "g"}, {"ln", "l"},  {"acos", "o"}, {"asin", "i"},
       {"atan", "n"}, {"tan", "t"}, {"cos", "c"}, {"sin", "s"},  {"sqrt", "q"},
   };
-  for (auto& replacement : replacements) {
+  for (auto &replacement : replacements) {
     size_t pos = 0;
     while ((pos = str.find(replacement.first, pos)) != std::string::npos) {
       if ((pos == 0 || !std::isalpha(str[pos - 1])) &&
@@ -252,9 +252,8 @@ double Model::Calc() {
   return tmp;
 }
 
-std::vector<double> Model::CreditCalc(double sum_credit,
-                                      double time_credit, double per,
-                                      bool check) {
+std::vector<double> Model::CreditCalc(double sum_credit, double time_credit,
+                                      double per, bool check) {
   std::vector<double> rez;
   if (check) {
     double month_pay = 0.0, over_pay = 0.0, all_pay = 0.0;
@@ -293,11 +292,13 @@ std::vector<double> Model::CreditCalc(double sum_credit,
   return rez;
 }
 
-std::vector<double> Model::DepositCalc( bool check, double deposit_term, 
-                                        double deposit_amount, double interest_rate, 
-                                        double tax_rate, double replenishments_month, 
-                                        double replenishments_sum, double partial_withdrawals_month, 
-                                        double partial_withdrawals_sum) {
+std::vector<double> Model::DepositCalc(bool check, double deposit_term,
+                                       double deposit_amount,
+                                       double interest_rate, double tax_rate,
+                                       double replenishments_month,
+                                       double replenishments_sum,
+                                       double partial_withdrawals_month,
+                                       double partial_withdrawals_sum) {
   double accrued_interest = 0, tax_amount = 0, deposit_end = 0;
   if (check) {
     double accrued_month_interest = 0;
@@ -341,6 +342,4 @@ std::vector<double> Model::DepositCalc( bool check, double deposit_term,
   return rez;
 }
 
-}  // namespace s21
-
-
+} // namespace s21

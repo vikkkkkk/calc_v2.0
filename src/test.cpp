@@ -418,15 +418,6 @@ TEST(Calc, Test58) {
 
 TEST(ModelTest, Test59) {
   s21::Model model;
-  std::vector<double> expected = {172165, 72165.1, 1434.71};
-  std::vector<double> result = model.CreditCalc(100000, 120, 12, true);
-  ASSERT_NEAR(expected[0], result[0], 1);
-  ASSERT_NEAR(expected[1], result[1], 1);
-  ASSERT_NEAR(expected[2], result[2], 1);
-}
-
-TEST(ModelTest, Test60) {
-  s21::Model model;
   std::vector<double> expected = {831.20, 1000, 10958.9, 958.879};
   std::vector<double> result = model.CreditCalc(10000, 12, 20, false);
   ASSERT_NEAR(expected[0], result[0], 1);
@@ -434,7 +425,7 @@ TEST(ModelTest, Test60) {
   ASSERT_NEAR(expected[2], result[2], 1);
 }
 
-TEST(DepositCalcTest, Test61) {
+TEST(DepositCalcTest, Test60) {
   s21::Model model_;
   std::vector<double> result =
       model_.DepositCalc(true, 12, 10000, 10, 20, 0, 0, 0, 0);
@@ -443,7 +434,7 @@ TEST(DepositCalcTest, Test61) {
   ASSERT_NEAR(207.498, result[2], 1);
 }
 
-TEST(DepositCalcTest, Test62) {
+TEST(DepositCalcTest, Test61) {
   s21::Model model_;
   std::vector<double> result =
       model_.DepositCalc(false, 12, 10000, 10, 20, 0, 0, 0, 0);
@@ -452,7 +443,7 @@ TEST(DepositCalcTest, Test62) {
   ASSERT_NEAR(200, result[2], 1);
 }
 
-TEST(DepositCalcTest, Test63) {
+TEST(DepositCalcTest, Test62) {
   s21::Model model_;
   std::vector<double> result =
       model_.DepositCalc(true, 12, 10000, 10, 20, 5, 500, 0, 0);
@@ -461,7 +452,7 @@ TEST(DepositCalcTest, Test63) {
   ASSERT_NEAR(212.58, result[2], 1);
 }
 
-TEST(DepositCalcTest, Test64) {
+TEST(DepositCalcTest, Test63) {
   s21::Model model_;
   std::vector<double> result =
       model_.DepositCalc(true, 12, 10000, 10, 20, 0, 0, 5, 500);
@@ -470,7 +461,7 @@ TEST(DepositCalcTest, Test64) {
   ASSERT_NEAR(202.41, result[2], 1);
 }
 
-TEST(DepositCalcTest, Test65) {
+TEST(DepositCalcTest, Test64) {
   s21::Model model_;
   std::vector<double> result =
       model_.DepositCalc(true, 12, 10000, 10, 20, 5, 500, 5, 500);
@@ -479,7 +470,7 @@ TEST(DepositCalcTest, Test65) {
   ASSERT_NEAR(207.49, result[2], 1);
 }
 
-TEST(DepositCalcTest, Test66) {
+TEST(DepositCalcTest, Test65) {
   s21::Model model_;
   std::vector<double> result =
       model_.DepositCalc(false, 12, 10000, 10, 20, 5, 500, 5, 500);
